@@ -60,12 +60,13 @@ namespace TestWydatki.Transaction
             return transactions;
         }
 
-        public List<TransactionDraft> GetAllTransactionsCategorized(List<Category> selectedCategories)
+        public List<TransactionDraft> GetAllTransactionsCategorized(List<Category> selectedCategories/*, List<TransactionType> selectedTransactionTypes*/)
         {
-            string parameterList = string.Join(",", selectedCategories.Select((category, index) => $"'{category}'"));
+            string parameterListCategory = string.Join(",", selectedCategories.Select((category, index) => $"'{category}'"));
+            //string parameterListTransactionType = string.Join(",", selectedCategories.Select((category, index) => $"'{category}'"));
 
-            var selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterList}) ALLOW FILTERING";
-
+            var selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) ALLOW FILTERING";
+            //var selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) AND transactionType in ({parameterListTransactionType}) ALLOW FILTERING";
             var rows = session.Execute(selectQuery);
 
             var transactions = new List<TransactionDraft>();

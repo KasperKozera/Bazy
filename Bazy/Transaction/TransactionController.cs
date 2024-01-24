@@ -48,9 +48,9 @@ namespace TestWydatki.Transaction
         //    return allTransactions.Where(t => t.TransactionDate >= startDate && t.TransactionDate <= endDate).ToList();
         //}
 
-        public List<TransactionDraft> FilterTransactionsByCategory(List<Category> category)
+        public List<TransactionDraft> FilterTransactionsByCategory(List<Category>? category/*, List<TransactionType>? transactionType*/)
         {
-            var allTransactions = repository.GetAllTransactionsCategorized(category);
+            var allTransactions = repository.GetAllTransactionsCategorized(category/*, transactionType*/);
             return allTransactions.Where(t => category.Contains(t.Category)).ToList();
         }
 

@@ -61,6 +61,12 @@
             chblbShowCategory = new CheckedListBox();
             lblCheckedCategory = new Label();
             btnDelete = new Button();
+            lblFilterByType = new Label();
+            dtpFilterTransactionDate = new DateTimePicker();
+            lblFilteredTransactionDate = new Label();
+            lblDeleteTransaction = new Label();
+            lblFilterTransaction = new Label();
+            chlblbFilterByType = new CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)gvTransactions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionDraftBindingSource).BeginInit();
             SuspendLayout();
@@ -71,7 +77,7 @@
             gvTransactions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gvTransactions.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, transactionDateDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, transactionTypeDataGridViewTextBoxColumn, Price });
             gvTransactions.DataSource = transactionDraftBindingSource;
-            gvTransactions.Location = new Point(367, 12);
+            gvTransactions.Location = new Point(746, 12);
             gvTransactions.Name = "gvTransactions";
             gvTransactions.ReadOnly = true;
             gvTransactions.Size = new Size(643, 466);
@@ -136,81 +142,81 @@
             lblDescription.AutoSize = true;
             lblDescription.Location = new Point(12, 132);
             lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(67, 15);
+            lblDescription.Size = new Size(70, 15);
             lblDescription.TabIndex = 4;
-            lblDescription.Text = "Description";
+            lblDescription.Text = "Description:";
             // 
             // lblAmount
             // 
             lblAmount.AutoSize = true;
             lblAmount.Location = new Point(12, 161);
             lblAmount.Name = "lblAmount";
-            lblAmount.Size = new Size(51, 15);
+            lblAmount.Size = new Size(54, 15);
             lblAmount.TabIndex = 5;
-            lblAmount.Text = "Amount";
+            lblAmount.Text = "Amount:";
             // 
             // lblTransactionDate
             // 
             lblTransactionDate.AutoSize = true;
             lblTransactionDate.Location = new Point(12, 190);
             lblTransactionDate.Name = "lblTransactionDate";
-            lblTransactionDate.Size = new Size(94, 15);
+            lblTransactionDate.Size = new Size(97, 15);
             lblTransactionDate.TabIndex = 6;
-            lblTransactionDate.Text = "Transaction Date";
+            lblTransactionDate.Text = "Transaction Date:";
             // 
             // lblCategory
             // 
             lblCategory.AutoSize = true;
             lblCategory.Location = new Point(12, 219);
             lblCategory.Name = "lblCategory";
-            lblCategory.Size = new Size(55, 15);
+            lblCategory.Size = new Size(58, 15);
             lblCategory.TabIndex = 7;
-            lblCategory.Text = "Category";
+            lblCategory.Text = "Category:";
             // 
             // lblTransactionType
             // 
             lblTransactionType.AutoSize = true;
             lblTransactionType.Location = new Point(12, 248);
             lblTransactionType.Name = "lblTransactionType";
-            lblTransactionType.Size = new Size(94, 15);
+            lblTransactionType.Size = new Size(97, 15);
             lblTransactionType.TabIndex = 8;
-            lblTransactionType.Text = "Transaction Type";
+            lblTransactionType.Text = "Transaction Type:";
             // 
             // lblPrice
             // 
             lblPrice.AutoSize = true;
             lblPrice.Location = new Point(12, 277);
             lblPrice.Name = "lblPrice";
-            lblPrice.Size = new Size(33, 15);
+            lblPrice.Size = new Size(36, 15);
             lblPrice.TabIndex = 9;
-            lblPrice.Text = "Price";
+            lblPrice.Text = "Price:";
             // 
             // txtDescription
             // 
             txtDescription.Location = new Point(112, 129);
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(121, 23);
+            txtDescription.Size = new Size(200, 23);
             txtDescription.TabIndex = 10;
             // 
             // txtAmount
             // 
             txtAmount.Location = new Point(112, 158);
             txtAmount.Name = "txtAmount";
-            txtAmount.Size = new Size(121, 23);
+            txtAmount.Size = new Size(200, 23);
             txtAmount.TabIndex = 11;
             // 
             // txtPrice
             // 
             txtPrice.Location = new Point(112, 274);
             txtPrice.Name = "txtPrice";
-            txtPrice.Size = new Size(121, 23);
+            txtPrice.Size = new Size(200, 23);
             txtPrice.TabIndex = 15;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(31, 327);
+            btnAdd.Location = new Point(112, 329);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(102, 23);
             btnAdd.TabIndex = 16;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -218,9 +224,9 @@
             // 
             // btnClear
             // 
-            btnClear.Location = new Point(112, 327);
+            btnClear.Location = new Point(220, 329);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(75, 23);
+            btnClear.Size = new Size(92, 23);
             btnClear.TabIndex = 17;
             btnClear.Text = "Clear";
             btnClear.UseVisualStyleBackColor = true;
@@ -247,7 +253,7 @@
             cbCategory.FormattingEnabled = true;
             cbCategory.Location = new Point(112, 219);
             cbCategory.Name = "cbCategory";
-            cbCategory.Size = new Size(121, 23);
+            cbCategory.Size = new Size(200, 23);
             cbCategory.TabIndex = 20;
             // 
             // cbTransactionType
@@ -255,12 +261,12 @@
             cbTransactionType.FormattingEnabled = true;
             cbTransactionType.Location = new Point(112, 248);
             cbTransactionType.Name = "cbTransactionType";
-            cbTransactionType.Size = new Size(121, 23);
+            cbTransactionType.Size = new Size(200, 23);
             cbTransactionType.TabIndex = 21;
             // 
             // txtSumOfExpenses
             // 
-            txtSumOfExpenses.Location = new Point(469, 511);
+            txtSumOfExpenses.Location = new Point(508, 401);
             txtSumOfExpenses.Name = "txtSumOfExpenses";
             txtSumOfExpenses.Size = new Size(100, 23);
             txtSumOfExpenses.TabIndex = 22;
@@ -268,7 +274,7 @@
             // lblSumOfExpenses
             // 
             lblSumOfExpenses.AutoSize = true;
-            lblSumOfExpenses.Location = new Point(367, 514);
+            lblSumOfExpenses.Location = new Point(406, 401);
             lblSumOfExpenses.Name = "lblSumOfExpenses";
             lblSumOfExpenses.Size = new Size(96, 15);
             lblSumOfExpenses.TabIndex = 23;
@@ -277,7 +283,7 @@
             // lblSumOfIncome
             // 
             lblSumOfIncome.AutoSize = true;
-            lblSumOfIncome.Location = new Point(367, 576);
+            lblSumOfIncome.Location = new Point(406, 439);
             lblSumOfIncome.Name = "lblSumOfIncome";
             lblSumOfIncome.Size = new Size(88, 15);
             lblSumOfIncome.TabIndex = 25;
@@ -285,7 +291,7 @@
             // 
             // txtSumOfIncome
             // 
-            txtSumOfIncome.Location = new Point(469, 573);
+            txtSumOfIncome.Location = new Point(508, 436);
             txtSumOfIncome.Name = "txtSumOfIncome";
             txtSumOfIncome.Size = new Size(100, 23);
             txtSumOfIncome.TabIndex = 24;
@@ -293,16 +299,16 @@
             // chblbShowCategory
             // 
             chblbShowCategory.FormattingEnabled = true;
-            chblbShowCategory.Location = new Point(612, 514);
+            chblbShowCategory.Location = new Point(506, 203);
             chblbShowCategory.Name = "chblbShowCategory";
-            chblbShowCategory.Size = new Size(166, 94);
+            chblbShowCategory.Size = new Size(196, 94);
             chblbShowCategory.TabIndex = 26;
             chblbShowCategory.ItemCheck += chblbShowCategory_ItemCheck;
             // 
             // lblCheckedCategory
             // 
             lblCheckedCategory.AutoSize = true;
-            lblCheckedCategory.Location = new Point(612, 496);
+            lblCheckedCategory.Location = new Point(406, 203);
             lblCheckedCategory.Name = "lblCheckedCategory";
             lblCheckedCategory.Size = new Size(98, 15);
             lblCheckedCategory.TabIndex = 27;
@@ -310,20 +316,78 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(193, 327);
+            btnDelete.Location = new Point(112, 411);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
+            btnDelete.Size = new Size(102, 23);
             btnDelete.TabIndex = 26;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
+            // 
+            // lblFilterByType
+            // 
+            lblFilterByType.AutoSize = true;
+            lblFilterByType.Location = new Point(406, 132);
+            lblFilterByType.Name = "lblFilterByType";
+            lblFilterByType.Size = new Size(75, 15);
+            lblFilterByType.TabIndex = 28;
+            lblFilterByType.Text = "Filter by type";
+            // 
+            // dtpFilterTransactionDate
+            // 
+            dtpFilterTransactionDate.Location = new Point(506, 313);
+            dtpFilterTransactionDate.Name = "dtpFilterTransactionDate";
+            dtpFilterTransactionDate.Size = new Size(200, 23);
+            dtpFilterTransactionDate.TabIndex = 31;
+            // 
+            // lblFilteredTransactionDate
+            // 
+            lblFilteredTransactionDate.AutoSize = true;
+            lblFilteredTransactionDate.Location = new Point(406, 316);
+            lblFilteredTransactionDate.Name = "lblFilteredTransactionDate";
+            lblFilteredTransactionDate.Size = new Size(94, 15);
+            lblFilteredTransactionDate.TabIndex = 30;
+            lblFilteredTransactionDate.Text = "Transaction Date";
+            // 
+            // lblDeleteTransaction
+            // 
+            lblDeleteTransaction.AutoSize = true;
+            lblDeleteTransaction.Location = new Point(112, 376);
+            lblDeleteTransaction.Name = "lblDeleteTransaction";
+            lblDeleteTransaction.Size = new Size(102, 15);
+            lblDeleteTransaction.TabIndex = 32;
+            lblDeleteTransaction.Text = "Delete transaction";
+            // 
+            // lblFilterTransaction
+            // 
+            lblFilterTransaction.AutoSize = true;
+            lblFilterTransaction.Location = new Point(520, 80);
+            lblFilterTransaction.Name = "lblFilterTransaction";
+            lblFilterTransaction.Size = new Size(95, 15);
+            lblFilterTransaction.TabIndex = 33;
+            lblFilterTransaction.Text = "Filter transaction";
+            // 
+            // chlblbFilterByType
+            // 
+            chlblbFilterByType.FormattingEnabled = true;
+            chlblbFilterByType.Location = new Point(506, 129);
+            chlblbFilterByType.Name = "chlblbFilterByType";
+            chlblbFilterByType.Size = new Size(196, 58);
+            chlblbFilterByType.TabIndex = 34;
+            chlblbFilterByType.ItemCheck += chlblbFilterByType_ItemCheck;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(1022, 627);
+            ClientSize = new Size(1401, 485);
+            Controls.Add(chlblbFilterByType);
+            Controls.Add(lblFilterTransaction);
+            Controls.Add(lblDeleteTransaction);
+            Controls.Add(dtpFilterTransactionDate);
+            Controls.Add(lblFilteredTransactionDate);
+            Controls.Add(lblFilterByType);
             Controls.Add(btnDelete);
             Controls.Add(lblCheckedCategory);
             Controls.Add(chblbShowCategory);
@@ -390,5 +454,11 @@
         private CheckedListBox chblbShowCategory;
         private Label lblCheckedCategory;
         private Button btnDelete;
+        private Label lblFilterByType;
+        private DateTimePicker dtpFilterTransactionDate;
+        private Label lblFilteredTransactionDate;
+        private Label lblDeleteTransaction;
+        private Label lblFilterTransaction;
+        private CheckedListBox chlblbFilterByType;
     }
 }

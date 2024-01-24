@@ -4,6 +4,5 @@
     {
         Expense,
         Income
-        
     }
 }

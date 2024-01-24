@@ -1,19 +1,15 @@
-
 using Cassandra;
-using System.Data;
 using TestWydatki.Enums;
 using TestWydatki.Transaction;
 
 namespace Bazy
-
 {
     public partial class Main : Form
     {
         private TransactionController transactionController;
         private List<Category> categories;
         private List<TransactionType> transactionTypes;
-
-        List<Category> selectedCategory = new List<Category>();
+        private List<Category> selectedCategory = new List<Category>();
 
         public Main()
         {
@@ -36,7 +32,6 @@ namespace Bazy
                 {
                     gvTransactions.Sort(gvTransactions.Columns["TransactionDate"], System.ComponentModel.ListSortDirection.Descending);
                 }
-                InitializeCategoryCheckedListBox();
                 SumOfExpenses();
                 SumOfIncome();
             }
@@ -48,7 +43,7 @@ namespace Bazy
 
         private void RefreshDataGridViewCategorized()
         {
-            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory);
+            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory/*, selectedTransactionType*/);
             gvTransactions.DataSource = allCategorizedTransactions;
             SumOfExpenses();
             SumOfIncome();
@@ -88,6 +83,16 @@ namespace Bazy
             }
         }
 
+        private void InitializeTransactionTypeCheckedListBox()
+        {
+            Array transactionTypValues = Enum.GetValues(typeof(TransactionType));
+
+            foreach (TransactionType transactionType in transactionTypValues)
+            {
+                chlblbFilterByType.Items.Add(transactionType, false);
+            }
+        }
+
         private void clearData()
         {
             txtDescription.Text = string.Empty;
@@ -117,6 +122,8 @@ namespace Bazy
 
             cbCategory.DataSource = categories;
             cbTransactionType.DataSource = transactionTypes;
+            InitializeCategoryCheckedListBox();
+            InitializeTransactionTypeCheckedListBox();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -162,6 +169,8 @@ namespace Bazy
 
         private void chblbShowCategory_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            selectedCategory.Clear();
+
             if (e.NewValue == CheckState.Checked)
             {
                 selectedCategory.Add((Category)chblbShowCategory.Items[e.Index]);
@@ -179,6 +188,11 @@ namespace Bazy
             {
                 RefreshDataGridView();
             }
+        }
+
+        private void chlblbFilterByType_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
         }
 
         #endregion

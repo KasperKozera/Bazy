@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ADGV" Version="0.1.0.10" />
     <PackageReference Include="CassandraCSharpDriver" Version="3.19.5" />
   </ItemGroup>
 
