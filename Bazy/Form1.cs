@@ -10,6 +10,7 @@ namespace Bazy
         private List<Category> categories;
         private List<TransactionType> transactionTypes;
         private List<Category> selectedCategory = new List<Category>();
+        private List<TransactionType> selectedTransactionType = new List<TransactionType>();
 
         public Main()
         {
@@ -43,7 +44,7 @@ namespace Bazy
 
         private void RefreshDataGridViewCategorized()
         {
-            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory/*, selectedTransactionType*/);
+            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory, selectedTransactionType);
             gvTransactions.DataSource = allCategorizedTransactions;
             SumOfExpenses();
             SumOfIncome();
@@ -169,8 +170,6 @@ namespace Bazy
 
         private void chblbShowCategory_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            selectedCategory.Clear();
-
             if (e.NewValue == CheckState.Checked)
             {
                 selectedCategory.Add((Category)chblbShowCategory.Items[e.Index]);
@@ -192,7 +191,23 @@ namespace Bazy
 
         private void chlblbFilterByType_ItemCheck(object sender, ItemCheckEventArgs e)
         {
+            if (e.NewValue == CheckState.Checked)
+            {
+                selectedTransactionType.Add((TransactionType)chlblbFilterByType.Items[e.Index]);
+            }
+            else
+            {
+                selectedTransactionType.Remove((TransactionType)chlblbFilterByType.Items[e.Index]);
+            }
 
+            if (selectedTransactionType.Count != 0)
+            {
+                RefreshDataGridViewCategorized();
+            }
+            else
+            {
+                RefreshDataGridView();
+            }
         }
 
         #endregion

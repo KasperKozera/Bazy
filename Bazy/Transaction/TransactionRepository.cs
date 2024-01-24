@@ -60,13 +60,26 @@ namespace TestWydatki.Transaction
             return transactions;
         }
 
-        public List<TransactionDraft> GetAllTransactionsCategorized(List<Category> selectedCategories/*, List<TransactionType> selectedTransactionTypes*/)
+        public List<TransactionDraft> GetAllTransactionsCategorized(List<Category> selectedCategories, List<TransactionType> selectedTransactionTypes)
         {
             string parameterListCategory = string.Join(",", selectedCategories.Select((category, index) => $"'{category}'"));
-            //string parameterListTransactionType = string.Join(",", selectedCategories.Select((category, index) => $"'{category}'"));
+            string parameterListTransactionType = string.Join(",", selectedTransactionTypes.Select((TransactionType, index) => $"'{TransactionType}'"));
 
-            var selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) ALLOW FILTERING";
-            //var selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) AND transactionType in ({parameterListTransactionType}) ALLOW FILTERING";
+            string selectQuery = string.Empty;
+
+            if (selectedCategories.Count >= 1 && selectedTransactionTypes.Count == 0)
+            {
+                selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) ALLOW FILTERING";
+            }
+            else if (selectedTransactionTypes.Count >= 1 && selectedCategories.Count == 0)
+            {
+                selectQuery = $"SELECT * FROM {TableName} WHERE transactionType IN ({parameterListTransactionType}) ALLOW FILTERING";
+            }
+            else
+            {
+                selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterListCategory}) AND transactionType in ({parameterListTransactionType}) ALLOW FILTERING";
+            }
+
             var rows = session.Execute(selectQuery);
 
             var transactions = new List<TransactionDraft>();
