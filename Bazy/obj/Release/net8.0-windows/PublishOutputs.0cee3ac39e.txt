@@ -1,0 +1,13 @@
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Bazy.exe
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Bazy.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Bazy.deps.json
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Bazy.runtimeconfig.json
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Bazy.pdb
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Cassandra.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\K4os.Compression.LZ4.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Logging.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\Newtonsoft.Json.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\System.Management.dll
+C:\Users\kozen\Downloads\Bazy\Bazy\Bazy\bin\Release\net8.0-windows\publish\runtimes\win\lib\netcoreapp2.0\System.Management.dll
