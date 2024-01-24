@@ -112,6 +112,28 @@ namespace Bazy
             clearData();
         }
 
+        private void dataGridViewTransactions_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                Guid selectedTransactionId = (Guid)gvTransactions.Rows[e.RowIndex].Cells["idDataGridViewTextBoxColumn"].Value;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (gvTransactions.SelectedCells.Count > 0)
+            {
+                Guid selectedTransactionId = (Guid)gvTransactions.Rows[gvTransactions.SelectedCells[0].RowIndex].Cells["idDataGridViewTextBoxColumn"].Value;
+                transactionController.DeleteTransaction(selectedTransactionId);
+                RefreshDataGridView();
+            }
+        }
+        private void gvTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
         private void SumOfIncome()
         {
             if (transactionController.SumIncomes() == 0)

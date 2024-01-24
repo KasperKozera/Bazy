@@ -62,6 +62,7 @@
             lblCheckedCategory = new Label();
             dtpFilterTransactionDate = new DateTimePicker();
             lblFilterByDate = new Label();
+            btnDelete = new Button();
             ((System.ComponentModel.ISupportInitialize)gvTransactions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionDraftBindingSource).BeginInit();
             SuspendLayout();
@@ -325,12 +326,23 @@
             lblFilterByDate.TabIndex = 29;
             lblFilterByDate.Text = "Filter by date";
             // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(272, 291);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(75, 23);
+            btnDelete.TabIndex = 26;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(1022, 627);
+            Controls.Add(btnDelete);
             Controls.Add(lblFilterByDate);
             Controls.Add(dtpFilterTransactionDate);
             Controls.Add(lblCheckedCategory);
@@ -399,5 +411,6 @@
         private Label lblCheckedCategory;
         private DateTimePicker dtpFilterTransactionDate;
         private Label lblFilterByDate;
+        private Button btnDelete;
     }
 }
