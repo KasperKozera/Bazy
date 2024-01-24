@@ -60,8 +60,6 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             chblbShowCategory = new CheckedListBox();
             lblCheckedCategory = new Label();
-            dtpFilterTransactionDate = new DateTimePicker();
-            lblFilterByDate = new Label();
             btnDelete = new Button();
             ((System.ComponentModel.ISupportInitialize)gvTransactions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionDraftBindingSource).BeginInit();
@@ -310,25 +308,9 @@
             lblCheckedCategory.TabIndex = 27;
             lblCheckedCategory.Text = "Filter by category";
             // 
-            // dtpFilterTransactionDate
-            // 
-            dtpFilterTransactionDate.Location = new Point(810, 514);
-            dtpFilterTransactionDate.Name = "dtpFilterTransactionDate";
-            dtpFilterTransactionDate.Size = new Size(200, 23);
-            dtpFilterTransactionDate.TabIndex = 28;
-            // 
-            // lblFilterByDate
-            // 
-            lblFilterByDate.AutoSize = true;
-            lblFilterByDate.Location = new Point(810, 496);
-            lblFilterByDate.Name = "lblFilterByDate";
-            lblFilterByDate.Size = new Size(75, 15);
-            lblFilterByDate.TabIndex = 29;
-            lblFilterByDate.Text = "Filter by date";
-            // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(272, 291);
+            btnDelete.Location = new Point(193, 327);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(75, 23);
             btnDelete.TabIndex = 26;
@@ -343,8 +325,6 @@
             BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(1022, 627);
             Controls.Add(btnDelete);
-            Controls.Add(lblFilterByDate);
-            Controls.Add(dtpFilterTransactionDate);
             Controls.Add(lblCheckedCategory);
             Controls.Add(chblbShowCategory);
             Controls.Add(lblSumOfIncome);
@@ -409,8 +389,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private CheckedListBox chblbShowCategory;
         private Label lblCheckedCategory;
-        private DateTimePicker dtpFilterTransactionDate;
-        private Label lblFilterByDate;
         private Button btnDelete;
     }
 }

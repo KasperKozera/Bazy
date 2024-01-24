@@ -21,7 +21,6 @@ namespace TestWydatki.Transaction
             session.Execute($"USE {KeyspaceName}");
 
             session.Execute($"CREATE TABLE IF NOT EXISTS {TableName} (id UUID PRIMARY KEY, description TEXT, amount DECIMAL,transactionDate TIMESTAMP, category TEXT,transactionType TEXT,price DECIMAL )");
-            //session.Execute($"CREATE INDEX id_index on transaction ()");
         }
 
         public void AddTransaction(TransactionDraft transactionDraft)
@@ -143,63 +142,6 @@ namespace TestWydatki.Transaction
                 };
 
                 transactions.Add(transaction);
-            }
-
-            return transactions;
-        }
-
-        public List<TransactionDraft> GetAllTransactionsCategorized(List<Category> selectedCategories, int? filterMonth = null)
-        {
-            // Utwórz dynamiczne zapytanie w zależności od liczby kategorii
-            string selectQuery;
-            if (selectedCategories.Count == 0)
-            {
-                // Jeśli lista kategorii jest pusta, pobierz wszystkie transakcje
-                selectQuery = $"SELECT * FROM {TableName}";
-            }
-            else
-            {
-                // Jeśli są wybrane kategorie, zbuduj zapytanie z parametrami związanych
-                string parameterList = string.Join(",", Enumerable.Range(0, selectedCategories.Count).Select(i => $"?{i + 1}"));
-                selectQuery = $"SELECT * FROM {TableName} WHERE category IN ({parameterList})";
-            }
-
-            var statement = session.Prepare(selectQuery);
-
-            // Utwórz listę parametrów związanych
-            var parameters = selectedCategories.Cast<object>().ToList();
-
-            // Dodaj parametr dla filtra na miesiąc, jeśli został podany
-            if (filterMonth.HasValue)
-            {
-                selectQuery += " AND date_trunc('month', transactiondate) = ?";
-                parameters.Add(new DateTime(DateTime.Now.Year, filterMonth.Value, 1));
-            }
-
-            return ExecuteQuery(statement, parameters);
-        }
-
-        private List<TransactionDraft> ExecuteQuery(PreparedStatement statement, List<object> parameters)
-        {
-            var boundStatement = statement.Bind(parameters.ToArray());
-            var rows = session.Execute(boundStatement);
-
-            var transactions = new List<TransactionDraft>();
-
-            foreach (var row in rows)
-            {
-                var transactionDraft = new TransactionDraft
-                {
-                    Id = row.GetValue<Guid>("id"),
-                    Description = row.GetValue<string>("description"),
-                    Amount = row.GetValue<decimal>("amount"),
-                    TransactionDate = row.GetValue<DateTime>("transactiondate"),
-                    Category = Enum.Parse<Category>(row.GetValue<string>("category")),
-                    TransactionType = Enum.Parse<TransactionType>(row.GetValue<string>("transactiontype")),
-                    Price = row.GetValue<decimal>("price")
-                };
-
-                transactions.Add(transactionDraft);
             }
 
             return transactions;

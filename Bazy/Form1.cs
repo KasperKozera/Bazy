@@ -1,5 +1,6 @@
 
 using Cassandra;
+using System.Data;
 using TestWydatki.Enums;
 using TestWydatki.Transaction;
 
@@ -23,17 +24,7 @@ namespace Bazy
             InitializeComponent();
         }
 
-        #region Zdarzenia
-        private void Main_Load(object sender, EventArgs e)
-        {
-            RefreshDataGridView();
-            categories = new List<Category>((Category[])Enum.GetValues(typeof(Category)));
-            transactionTypes = new List<TransactionType>((TransactionType[])Enum.GetValues(typeof(TransactionType)));
-
-            cbCategory.DataSource = categories;
-            cbTransactionType.DataSource = transactionTypes;
-        }
-
+        #region Functions
         private void RefreshDataGridView()
         {
             try
@@ -63,6 +54,71 @@ namespace Bazy
             SumOfIncome();
         }
 
+        private void SumOfIncome()
+        {
+            if (transactionController.SumIncomes(selectedCategory) == 0)
+            {
+                txtSumOfIncome.Text = string.Empty;
+            }
+            else
+            {
+                txtSumOfIncome.Text = transactionController.SumIncomes(selectedCategory).ToString();
+            }
+        }
+
+        private void SumOfExpenses()
+        {
+            if (transactionController.SumExpenses(selectedCategory) == 0)
+            {
+                txtSumOfExpenses.Text = string.Empty;
+            }
+            else
+            {
+                txtSumOfExpenses.Text = transactionController.SumExpenses(selectedCategory).ToString();
+            }
+        }
+
+        private void InitializeCategoryCheckedListBox()
+        {
+            Array categoryValues = Enum.GetValues(typeof(Category));
+
+            foreach (Category category in categoryValues)
+            {
+                chblbShowCategory.Items.Add(category, false);
+            }
+        }
+
+        private void clearData()
+        {
+            txtDescription.Text = string.Empty;
+            txtDescription.Tag = null;
+
+            txtAmount.Text = string.Empty;
+            txtAmount.Tag = null;
+
+            dtpTransactionDate.Value = DateTime.UtcNow;
+
+            cbCategory.Text = Category.None.ToString();
+
+            cbTransactionType.Text = TransactionType.Expense.ToString();
+
+            txtPrice.Text = string.Empty;
+            txtPrice.Tag = null;
+        }
+
+        #endregion
+
+        #region Zdarzenia
+        private void Main_Load(object sender, EventArgs e)
+        {
+            RefreshDataGridView();
+            categories = new List<Category>((Category[])Enum.GetValues(typeof(Category)));
+            transactionTypes = new List<TransactionType>((TransactionType[])Enum.GetValues(typeof(TransactionType)));
+
+            cbCategory.DataSource = categories;
+            cbTransactionType.DataSource = transactionTypes;
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -89,35 +145,9 @@ namespace Bazy
 
         }
 
-        private void clearData()
-        {
-            txtDescription.Text = string.Empty;
-            txtDescription.Tag = null;
-
-            txtAmount.Text = string.Empty;
-            txtAmount.Tag = null;
-
-            dtpTransactionDate.Value = DateTime.UtcNow;
-
-            cbCategory.Text = Category.None.ToString();
-
-            cbTransactionType.Text = TransactionType.Expense.ToString();
-
-            txtPrice.Text = string.Empty;
-            txtPrice.Tag = null;
-        }
-
         private void btnClear_Click(object sender, EventArgs e)
         {
             clearData();
-        }
-
-        private void dataGridViewTransactions_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                Guid selectedTransactionId = (Guid)gvTransactions.Rows[e.RowIndex].Cells["idDataGridViewTextBoxColumn"].Value;
-            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -129,56 +159,10 @@ namespace Bazy
                 RefreshDataGridView();
             }
         }
-        private void gvTransactions_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void SumOfIncome()
-        {
-            if (transactionController.SumIncomes() == 0)
-            {
-                txtSumOfIncome.Text = string.Empty;
-            }
-            else
-            {
-                txtSumOfIncome.Text = transactionController.SumIncomes().ToString();
-            }
-        }
-
-        private void SumOfExpenses()
-        {
-            if (transactionController.SumExpenses() == 0)
-            {
-                txtSumOfExpenses.Text = string.Empty;
-            }
-            else
-            {
-                txtSumOfExpenses.Text = transactionController.SumExpenses().ToString();
-            }
-        }
-
-        private void InitializeCategoryCheckedListBox()
-        {
-            Array categoryValues = Enum.GetValues(typeof(Category));
-
-            foreach (Category category in categoryValues)
-            {
-                chblbShowCategory.Items.Add(category, false);
-            }
-        }
-        #endregion
-
-        private ISession CreateCassandraSession()
-        {
-            var cluster = Cluster.Builder().AddContactPoint("127.0.0.1").WithPort(9042).Build();
-            var session = cluster.Connect("system");
-            return session;
-        }
 
         private void chblbShowCategory_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if(e.NewValue == CheckState.Checked)
+            if (e.NewValue == CheckState.Checked)
             {
                 selectedCategory.Add((Category)chblbShowCategory.Items[e.Index]);
             }
@@ -187,7 +171,7 @@ namespace Bazy
                 selectedCategory.Remove((Category)chblbShowCategory.Items[e.Index]);
             }
 
-            if(selectedCategory.Count != 0)
+            if (selectedCategory.Count != 0)
             {
                 RefreshDataGridViewCategorized();
             }
@@ -196,5 +180,16 @@ namespace Bazy
                 RefreshDataGridView();
             }
         }
+
+        #endregion
+
+        #region Cassandra session
+        private ISession CreateCassandraSession()
+        {
+            var cluster = Cluster.Builder().AddContactPoint("127.0.0.1").WithPort(9042).Build();
+            var session = cluster.Connect("system");
+            return session;
+        }
+        #endregion
     }
 }
