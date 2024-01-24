@@ -37,9 +37,9 @@ namespace TestWydatki.Transaction
             repository.DeleteTransaction(id);
         }
 
-        public List<TransactionDraft> GetTransactionByType(TransactionType type)
+        public List<TransactionDraft> GetTransactionByType(TransactionType selectedType)
         {
-            return repository.GetTransactionsByType(type);
+            return repository.GetTransactionsByType(selectedType);
         }
 
         //public List<TransactionDraft> FilterTransactionsByDate(DateTime startDate, DateTime endDate)
@@ -51,7 +51,7 @@ namespace TestWydatki.Transaction
         public List<TransactionDraft> FilterTransactionsByCategory(List<Category>? category, List<TransactionType>? transactionType)
         {
             var allTransactions = repository.GetAllTransactionsCategorized(category, transactionType);
-            return allTransactions.Where(t => category.Contains(t.Category)).ToList();
+            return allTransactions.ToList();
         }
 
         //public List<TransactionDraft> FilterTransactionsByDateAndCategory(DateTime startDate, DateTime endDate, Category category)
@@ -66,12 +66,26 @@ namespace TestWydatki.Transaction
         //    return allTransactions.Where(t => t.Amount == amount).ToList();
         //}
 
+        public decimal SumExpensesFiltered(List<Category> selectedCategories, List<TransactionType> selectedType)
+        {
+            var expenseTransactions = repository.GetAllTransactionsCategorized(selectedCategories, selectedType);
+
+            return expenseTransactions.Sum(t => t.Amount * t.Price);
+        }
+
+        public decimal SumIncomesFiltered(List<Category> selectedCategories, List<TransactionType> selectedType)
+        {
+            var incomeTransactions = repository.GetAllTransactionsCategorized(selectedCategories, selectedType);
+
+            return incomeTransactions.Sum(t => t.Amount * t.Price);
+        }
+
         public decimal SumExpenses(List<Category> selectedCategories)
         {
             var expenseTransactions = repository.GetTransactionsByType(TransactionType.Expense);
-            if( selectedCategories != null && selectedCategories.Any())
+            if (selectedCategories != null && selectedCategories.Any())
             {
-                expenseTransactions = expenseTransactions.Where(t=>selectedCategories.Contains(t.Category)).ToList();
+                expenseTransactions = expenseTransactions.Where(t => selectedCategories.Contains(t.Category)).ToList();
             }
             return expenseTransactions.Sum(t => t.Amount * t.Price);
         }

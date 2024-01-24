@@ -33,8 +33,10 @@ namespace Bazy
                 {
                     gvTransactions.Sort(gvTransactions.Columns["TransactionDate"], System.ComponentModel.ListSortDirection.Descending);
                 }
+
                 SumOfExpenses();
                 SumOfIncome();
+
             }
             catch (Exception ex)
             {
@@ -46,8 +48,27 @@ namespace Bazy
         {
             var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory, selectedTransactionType);
             gvTransactions.DataSource = allCategorizedTransactions;
-            SumOfExpenses();
-            SumOfIncome();
+            SumOfIncomeFiltered(selectedCategory, selectedTransactionType);
+            SumOfExpensesFiltered(selectedCategory, selectedTransactionType);
+        }
+
+        private void SumOfIncomeFiltered(List<Category> selectedCategory, List<TransactionType> selectedTransactionTypes)
+        {
+            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory, selectedTransactionTypes);
+
+            var incomeTransactions = allCategorizedTransactions.Where(t => t.TransactionType == TransactionType.Income).ToList();
+
+            txtSumOfIncome.Text = incomeTransactions.Sum(t => t.Amount * t.Price).ToString();
+
+        }
+
+        private void SumOfExpensesFiltered(List<Category> selectedCategory, List<TransactionType> selectedTransactionTypes)
+        {
+            var allCategorizedTransactions = transactionController.FilterTransactionsByCategory(selectedCategory, selectedTransactionTypes);
+
+            var incomeTransactions = allCategorizedTransactions.Where(t => t.TransactionType == TransactionType.Expense).ToList();
+
+            txtSumOfExpenses.Text = incomeTransactions.Sum(t => t.Amount * t.Price).ToString();
         }
 
         private void SumOfIncome()

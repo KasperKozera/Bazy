@@ -62,8 +62,6 @@
             lblCheckedCategory = new Label();
             btnDelete = new Button();
             lblFilterByType = new Label();
-            dtpFilterTransactionDate = new DateTimePicker();
-            lblFilteredTransactionDate = new Label();
             lblDeleteTransaction = new Label();
             lblFilterTransaction = new Label();
             chlblbFilterByType = new CheckedListBox();
@@ -333,22 +331,6 @@
             lblFilterByType.TabIndex = 28;
             lblFilterByType.Text = "Filter by type";
             // 
-            // dtpFilterTransactionDate
-            // 
-            dtpFilterTransactionDate.Location = new Point(506, 313);
-            dtpFilterTransactionDate.Name = "dtpFilterTransactionDate";
-            dtpFilterTransactionDate.Size = new Size(200, 23);
-            dtpFilterTransactionDate.TabIndex = 31;
-            // 
-            // lblFilteredTransactionDate
-            // 
-            lblFilteredTransactionDate.AutoSize = true;
-            lblFilteredTransactionDate.Location = new Point(406, 316);
-            lblFilteredTransactionDate.Name = "lblFilteredTransactionDate";
-            lblFilteredTransactionDate.Size = new Size(94, 15);
-            lblFilteredTransactionDate.TabIndex = 30;
-            lblFilteredTransactionDate.Text = "Transaction Date";
-            // 
             // lblDeleteTransaction
             // 
             lblDeleteTransaction.AutoSize = true;
@@ -385,8 +367,6 @@
             Controls.Add(chlblbFilterByType);
             Controls.Add(lblFilterTransaction);
             Controls.Add(lblDeleteTransaction);
-            Controls.Add(dtpFilterTransactionDate);
-            Controls.Add(lblFilteredTransactionDate);
             Controls.Add(lblFilterByType);
             Controls.Add(btnDelete);
             Controls.Add(lblCheckedCategory);
@@ -455,8 +435,6 @@
         private Label lblCheckedCategory;
         private Button btnDelete;
         private Label lblFilterByType;
-        private DateTimePicker dtpFilterTransactionDate;
-        private Label lblFilteredTransactionDate;
         private Label lblDeleteTransaction;
         private Label lblFilterTransaction;
         private CheckedListBox chlblbFilterByType;

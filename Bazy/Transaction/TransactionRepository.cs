@@ -132,7 +132,7 @@ namespace TestWydatki.Transaction
         }
 
         public List<TransactionDraft> GetTransactionsByType(TransactionType type)
-        {
+            {
             var selectQuery = $"SELECT * FROM {TableName} WHERE transactiontype = ? ALLOW FILTERING";
 
             var statement = session.Prepare(selectQuery);
