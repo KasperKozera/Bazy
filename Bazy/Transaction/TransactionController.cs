@@ -97,5 +97,7 @@ namespace TestWydatki.Transaction
 
             return expenseTransactionsInMonth.Sum(t => t.Amount * t.Price);
         }
+
+
     }
 }

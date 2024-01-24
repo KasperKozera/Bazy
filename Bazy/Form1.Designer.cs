@@ -60,6 +60,8 @@
             backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             chblbShowCategory = new CheckedListBox();
             lblCheckedCategory = new Label();
+            dtpFilterTransactionDate = new DateTimePicker();
+            lblFilterByDate = new Label();
             ((System.ComponentModel.ISupportInitialize)gvTransactions).BeginInit();
             ((System.ComponentModel.ISupportInitialize)transactionDraftBindingSource).BeginInit();
             SuspendLayout();
@@ -70,7 +72,7 @@
             gvTransactions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             gvTransactions.Columns.AddRange(new DataGridViewColumn[] { idDataGridViewTextBoxColumn, descriptionDataGridViewTextBoxColumn, amountDataGridViewTextBoxColumn, transactionDateDataGridViewTextBoxColumn, categoryDataGridViewTextBoxColumn, transactionTypeDataGridViewTextBoxColumn, Price });
             gvTransactions.DataSource = transactionDraftBindingSource;
-            gvTransactions.Location = new Point(668, 80);
+            gvTransactions.Location = new Point(367, 12);
             gvTransactions.Name = "gvTransactions";
             gvTransactions.ReadOnly = true;
             gvTransactions.Size = new Size(643, 466);
@@ -259,7 +261,7 @@
             // 
             // txtSumOfExpenses
             // 
-            txtSumOfExpenses.Location = new Point(770, 581);
+            txtSumOfExpenses.Location = new Point(469, 511);
             txtSumOfExpenses.Name = "txtSumOfExpenses";
             txtSumOfExpenses.Size = new Size(100, 23);
             txtSumOfExpenses.TabIndex = 22;
@@ -267,7 +269,7 @@
             // lblSumOfExpenses
             // 
             lblSumOfExpenses.AutoSize = true;
-            lblSumOfExpenses.Location = new Point(668, 584);
+            lblSumOfExpenses.Location = new Point(367, 514);
             lblSumOfExpenses.Name = "lblSumOfExpenses";
             lblSumOfExpenses.Size = new Size(96, 15);
             lblSumOfExpenses.TabIndex = 23;
@@ -276,7 +278,7 @@
             // lblSumOfIncome
             // 
             lblSumOfIncome.AutoSize = true;
-            lblSumOfIncome.Location = new Point(668, 646);
+            lblSumOfIncome.Location = new Point(367, 576);
             lblSumOfIncome.Name = "lblSumOfIncome";
             lblSumOfIncome.Size = new Size(88, 15);
             lblSumOfIncome.TabIndex = 25;
@@ -284,7 +286,7 @@
             // 
             // txtSumOfIncome
             // 
-            txtSumOfIncome.Location = new Point(770, 643);
+            txtSumOfIncome.Location = new Point(469, 573);
             txtSumOfIncome.Name = "txtSumOfIncome";
             txtSumOfIncome.Size = new Size(100, 23);
             txtSumOfIncome.TabIndex = 24;
@@ -292,7 +294,7 @@
             // chblbShowCategory
             // 
             chblbShowCategory.FormattingEnabled = true;
-            chblbShowCategory.Location = new Point(913, 584);
+            chblbShowCategory.Location = new Point(612, 514);
             chblbShowCategory.Name = "chblbShowCategory";
             chblbShowCategory.Size = new Size(166, 94);
             chblbShowCategory.TabIndex = 26;
@@ -301,18 +303,36 @@
             // lblCheckedCategory
             // 
             lblCheckedCategory.AutoSize = true;
-            lblCheckedCategory.Location = new Point(913, 566);
+            lblCheckedCategory.Location = new Point(612, 496);
             lblCheckedCategory.Name = "lblCheckedCategory";
             lblCheckedCategory.Size = new Size(98, 15);
             lblCheckedCategory.TabIndex = 27;
             lblCheckedCategory.Text = "Filter by category";
+            // 
+            // dtpFilterTransactionDate
+            // 
+            dtpFilterTransactionDate.Location = new Point(810, 514);
+            dtpFilterTransactionDate.Name = "dtpFilterTransactionDate";
+            dtpFilterTransactionDate.Size = new Size(200, 23);
+            dtpFilterTransactionDate.TabIndex = 28;
+            // 
+            // lblFilterByDate
+            // 
+            lblFilterByDate.AutoSize = true;
+            lblFilterByDate.Location = new Point(810, 496);
+            lblFilterByDate.Name = "lblFilterByDate";
+            lblFilterByDate.Size = new Size(75, 15);
+            lblFilterByDate.TabIndex = 29;
+            lblFilterByDate.Text = "Filter by date";
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientActiveCaption;
-            ClientSize = new Size(1323, 713);
+            ClientSize = new Size(1022, 627);
+            Controls.Add(lblFilterByDate);
+            Controls.Add(dtpFilterTransactionDate);
             Controls.Add(lblCheckedCategory);
             Controls.Add(chblbShowCategory);
             Controls.Add(lblSumOfIncome);
@@ -377,5 +397,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private CheckedListBox chblbShowCategory;
         private Label lblCheckedCategory;
+        private DateTimePicker dtpFilterTransactionDate;
+        private Label lblFilterByDate;
     }
 }
